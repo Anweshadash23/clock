@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+
+        .con {
+            width: 500px;
+            height: 500px;
+            background-color: rgb(0, 0, 0);
+            border-radius: 400px;
+            position: relative;
+            border: 10px double rgb(255, 255, 255);
+        }
+
+        .dot {
+            background-color: white;
+            height: 25px;
+            width: 25px;
+            border-radius: 50%;
+            border: 1px solid white;
+            position: absolute;
+            margin-left: 50%;
+            margin-top: 230px;
+            justify-content: center;
+        }
+
+        .hr {
+            position: absolute;
+            color: white;
+            font-size: xx-large;
+        }
+
+        #hr1 {
+            top: 50px;
+            left: 360px;
+        }
+
+        #hr2 {
+            top: 125px;
+            left: 430px;
+        }
+
+        #hr3 {
+            top: 230px;
+            left: 460px;
+        }
+
+        #hr4 {
+            top: 325px;
+            left: 440px;
+        }
+
+        #hr5 {
+            top: 410px;
+            left: 360px;
+        }
+
+        #hr6 {
+            top: 440px;
+            right: 235px;
+        }
+
+        #hr7 {
+            top: 410px;
+            left: 120px;
+        }
+
+        #hr8 {
+            top: 325px;
+            left: 40px;
+        }
+
+        #hr9 {
+            top: 230px;
+            right: 460px;
+        }
+
+        #hr10 {
+            top: 125px;
+            left: 50px;
+        }
+
+        #hr11 {
+            top: 45px;
+            left: 120px;
+        }
+
+        #hr12 {
+            top: 15px;
+            left: 245px;
+        }
+        #hourhand,
+#minutehand,
+#secondhand {
+    position: absolute;
+    border-radius: 10px;
+    transform-origin: bottom;
+    /* background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); */
+}
+ 
+#hourhand {
+    width: 15px;
+    height: 130px;
+    top: 125px;
+    left: 272px;
+    opacity: 0.8;
+    background-color: burlywood;
+}
+ 
+#minutehand {
+    width: 15px;
+    height: 180px;
+    top: 80px;
+    left: 270px;
+    opacity: 0.8;
+    background-color:burlywood;
+}
+ 
+#secondhand{
+    width: 10px;
+    height: 200px;
+    top: 50px;
+    left: 275px;
+    bottom: 200px;
+    opacity: 0.8;
+    background-color:burlywood;
+}
+    </style>
+</head>
+
+<body>
+    <div class="con">
+        <span class="dot"></span>        
+        <div class="hr" id="hr1">1</div>
+        <div class="hr" id="hr2">2</div>
+        <div class="hr" id="hr3">3</div>
+        <div class="hr" id="hr4">4</div>
+        <div class="hr" id="hr5">5</div>
+        <div class="hr" id="hr6">6</div>
+        <div class="hr" id="hr7">7</div>
+        <div class="hr" id="hr8">8</div>
+        <div class="hr" id="hr9">9</div>
+        <div class="hr" id="hr10">10</div>
+        <div class="hr" id="hr11">11</div>
+        <div class="hr" id="hr12">12</div>
+    </div>
+    <div id="minutehand"></div>
+        <div id="hourhand"></div>
+        <div id="secondhand"></div>
+</body>
+<script>
+    // Get references to the clock hands
+const hourHand = document.getElementById('hourhand');
+const minuteHand = document.getElementById('minutehand');
+const secondHand = document.getElementById('secondhand');
+
+function updateClock() {
+    const now = new Date();
+
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+
+    // Calculate the angles for the clock hands
+    const hourAngle = (hours % 12) * 30 + (minutes / 2);
+    const minuteAngle = minutes * 6;
+    const secondAngle = seconds * 6;
+
+    // Apply the rotation to the clock hands
+    hourHand.style.transform = `rotate(${hourAngle}deg)`;
+    minuteHand.style.transform = `rotate(${minuteAngle}deg)`;
+    secondHand.style.transform = `rotate(${secondAngle}deg)`;
+}
+
+// Update the clock every second
+setInterval(updateClock, 1000);
+
+// Initial call to set the clock to the current time
+updateClock();
+
+</script>
+</html>
